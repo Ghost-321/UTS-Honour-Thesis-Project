@@ -1,0 +1,17 @@
+torch
+torchvision
+opencv-python
+Pillow
+numpy
+pandas
+matplotlib
+tqdm
+PyYAML
+open_clip_torch
+scikit-image
+scikit-learn
+timm
+basicsr
+realesrgan
+lpips
+piq

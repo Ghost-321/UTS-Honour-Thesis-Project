@@ -1,0 +1,102 @@
+# ============================================================
+# GLOBAL PATH CONFIGURATION
+# ============================================================
+paths:
+  # ------------------------------------------------------------
+  # ROOT DIRECTORY
+  # ------------------------------------------------------------
+  root: "C:/Users/Jonathan Morel/Desktop/Honour/Data"
+
+  # ------------------------------------------------------------
+  # B. DISEASE GRADING (IDRiD)
+  # ------------------------------------------------------------
+  grading_images:        "${paths.root}/B. Disease Grading/1. Original Images"
+  grading_images_train:  "${paths.root}/B. Disease Grading/1. Original Images/a. Training Set"
+  grading_images_test:   "${paths.root}/B. Disease Grading/1. Original Images/b. Testing Set"
+
+  grading_labels:        "${paths.root}/B. Disease Grading/2. Groundtruths/a. IDRiD_Disease Grading_Training Labels.csv"
+  grading_labels_train:  "${paths.root}/B. Disease Grading/2. Groundtruths/a. IDRiD_Disease Grading_Training Labels.csv"
+  grading_labels_test:   "${paths.root}/B. Disease Grading/2. Groundtruths/b. IDRiD_Disease Grading_Testing Labels.csv"
+
+  degraded_images: "${paths.root}/B. Disease Grading/1. Degraded_x2"
+  sr_images_root:  "C:/Users/Jonathan Morel/Desktop/Honour/outputs/sr_images_v2"
+
+  # ------------------------------------------------------------
+  # D. APTOS 2019 (Cross-Domain Benchmarking)
+  # ------------------------------------------------------------
+  aptos_original: "C:/Users/Jonathan Morel/Desktop/Honour/Data/APTOS/train_ready_512"
+  aptos_degraded: "C:/Users/Jonathan Morel/Desktop/Honour/Data/APTOS/1. Degraded_x2"
+  aptos_labels:   "C:/Users/Jonathan Morel/Desktop/Honour/Data/APTOS/train.csv"
+
+  # --- Corrected SR root (points to APTOS_SR_full)
+  aptos_sr_root:  "C:/Users/Jonathan Morel/Desktop/Honour/outputs/APTOS_SR_full"
+
+
+  # --- Output roots for metrics, logs, and models
+  aptos_metrics_root:  "C:/Users/Jonathan Morel/Desktop/Honour/outputs/APTOS_Metrics"
+  aptos_logs_root:     "C:/Users/Jonathan Morel/Desktop/Honour/outputs/APTOS_Logs"
+  aptos_models_root:   "C:/Users/Jonathan Morel/Desktop/Honour/outputs/sr_models"
+  aptos_zsl_logs_root: "C:/Users/Jonathan Morel/Desktop/Honour/outputs/APTOS_ZSL_Logs"
+
+  # ------------------------------------------------------------
+  # OTHER OPTIONAL DATASETS (unchanged)
+  # ------------------------------------------------------------
+  segmentation_images:       "${paths.root}/A. Segmentation/1. Original Images"
+  masks_root:                "${paths.root}/A. Segmentation/2. All Segmentation Groundtruths"
+  localization_images:       "${paths.root}/C. Localization/1. Original Images"
+  localization_labels:       "${paths.root}/C. Localization/2. Groundtruths"
+
+  swinir_ckpt: ""
+
+# ============================================================
+# RUNTIME CONFIGURATION
+# ============================================================
+run:
+  device: "cuda"
+  num_workers: 4
+  prefetch_factor: 2
+  seed: 42
+
+# ============================================================
+# SUPER-RESOLUTION SETTINGS
+# ============================================================
+sr:
+  scale: 2
+  patch: 320
+  stride: 160
+  batch: 32
+  epochs: 12
+  lr: 0.0002
+  alpha: 0.7
+  lambda_ssim: 0.1
+  models: ["bicubic", "srcnn", "fsrcnn", "espcn", "esrgan", "swinir"]
+
+  esrgan:
+    tile: 0
+    tile_pad: 10
+    pre_pad: 0
+
+# ============================================================
+# ZERO-SHOT LEARNING CONFIGURATION
+# ============================================================
+zsl:
+  dataset: "aptos"
+  classes: "binary_aptos"
+  backbones: ["clip", "retclip"]
+  prompt_ensemble: true
+
+# ============================================================
+# EVALUATION PARAMETERS
+# ============================================================
+eval:
+  binary_balance: 150
+
+# ============================================================
+# TRAINED SUPER-RESOLUTION MODEL CHECKPOINTS
+# ============================================================
+sr_checkpoints:
+  srcnn: "C:/Users/Jonathan Morel/Desktop/Honour/outputs/sr_models/srcnn_best.pt"
+  fsrcnn: "C:/Users/Jonathan Morel/Desktop/Honour/outputs/sr_models/fsrcnn_best.pt"
+  espcn: "C:/Users/Jonathan Morel/Desktop/Honour/outputs/sr_models/espcn_best.pt"
+  esrgan: "C:/Users/Jonathan Morel/Desktop/Honour/outputs/sr_models/esrgan_best.pt"
+  swinir: "C:/Users/Jonathan Morel/Desktop/Honour/outputs/sr_models/swinir_best.pt"

@@ -1,0 +1,5 @@
+Model,Avg_Inference_s,Throughput_img_per_s,Checkpoint_Size_MB
+srcnn,0.0001,9979.31,0.27
+srcnn_seg,0.0001,10007.88,0.27
+fsrcnn,0.0001,9960.35,0.05
+espcn,0.0001,10017.44,0.1
