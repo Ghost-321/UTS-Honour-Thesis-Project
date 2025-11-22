@@ -3,7 +3,8 @@
 This repository contains the code used for the Honours thesis:
 *“Investigating the Influence of Super-Resolution on Zero-Shot Diabetic Retinopathy Classification (UTS, 2025)”*
 
-The project evaluates whether improving retinal image visibility using conservative super-resolution can enhance zero-shot diabetic retinopathy classification without additional labelled training data.
+The project evaluates whether improving retinal image visibility using conservative super-resolution can enhance zero-shot diabetic retinopathy classification without additional labelled training data. For additional Artefacts visit this drive:
+https://drive.google.com/drive/folders/1x9TCBpXAXxFnSExnWm4RKLangEbYwwoz?usp=sharing
 
 ## Contents
 - Super-resolution models (Bicubic, SRCNN, FSRCNN, ESPCN)
@@ -29,3 +30,4 @@ Outputs are saved in:
 ## Notes
 - Datasets are not included in this repository
 - Academic use only
+
